@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "DevBooks API",
+    "description": "Coleção de testes para a API REST DevBooks (Authors & Books) - Programação para WEB II",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000" },
+    { "key": "author_id", "value": "" },
+    { "key": "book_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. Criar Autor (POST /authors)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Machado de Assis\",\n  \"biography\": \"Escritor brasileiro, considerado um dos maiores nomes da literatura nacional.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/authors",
+          "host": ["{{base_url}}"],
+          "path": ["authors"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Criar Livro (POST /books)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Dom Casmurro\",\n  \"release_year\": 1899,\n  \"author_id\": \"{{author_id}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/books",
+          "host": ["{{base_url}}"],
+          "path": ["books"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Listar Livros com Autores (GET /books)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books",
+          "host": ["{{base_url}}"],
+          "path": ["books"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Atualizar Livro (PUT /books/:id)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Dom Casmurro (Edição Revisada)\",\n  \"release_year\": 1900\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["books", "{{book_id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Excluir Livro (DELETE /books/:id)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["books", "{{book_id}}"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+// Schema do Prisma - DevBooks API
+// Documentação: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Authors {
+  id       String  @id @default(uuid())
+  name     String  @unique
+  biography String?
+
+  books    Books[]
+
+  @@map("authors")
+}
+
+model Books {
+  id           String  @id @default(uuid())
+  title        String
+  release_year Int
+  author_id    String
+
+  author       Authors @relation(fields: [author_id], references: [id])
+
+  @@map("books")
+}
